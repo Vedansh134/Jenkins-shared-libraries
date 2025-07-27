@@ -3,8 +3,8 @@ def call(String Project, String ImageTag, String dockerhubuser){
   withCredentials([usernamePassword('credentialsId':"dockerHubCred",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")])
                 {
                     sh "docker login -u ${dockerhubuser} -p ${dockerhubpass}"
-                    sh "docker image ${ImageTag} ${Project}:latest ${dockerhubuser}/mongo-shop-app:latest"
-                    //sh "docker image tag mongo-shop-app:latest ${dockerhubuser}/mongo-shop-app:latest"
+                    //sh "docker image ${ImageTag} ${Project}:latest ${dockerhubuser}/mongo-shop-app:latest"
+                    docker tag ${Project}:${ImageTag} ${dockerhubuser}/${Project}:${ImageTag}
                     sh "docker push ${dockerhubuser}/${Project}:${ImageTag}"
                     echo "DockerHub successfully login and push the image to DockerHub"
                 }
