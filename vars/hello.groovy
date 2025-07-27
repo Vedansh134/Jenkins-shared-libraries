@@ -1,3 +1,3 @@
 def call(){
-  echo "Hello Bhai!!"
+  echo "Hello This is for sample !!"
 }
